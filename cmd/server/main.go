@@ -8,6 +8,7 @@ import (
 
 	players "goteams/internal/players/handlers"
 	"goteams/internal/repository"
+	teams "goteams/internal/teams/handlers"
 )
 
 func main() {
@@ -23,6 +24,7 @@ func main() {
 	}))
 
 	players.Draw(r)
+	teams.Draw(r)
 
 	r.Run()
 }
