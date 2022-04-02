@@ -9,7 +9,7 @@ import (
 
 func main() {
 	os.Setenv("TZ", "UTC")
-	repository.Setup(os.Getenv("DB_FILE"))
+	repository.Setup(os.Getenv("DSN"))
 
 	repo, err := repository.New()
 	if err != nil {

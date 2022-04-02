@@ -13,7 +13,7 @@ import (
 
 func main() {
 	os.Setenv("TZ", "UTC")
-	repository.Setup(os.Getenv("DB_FILE"))
+	repository.Setup(os.Getenv("DSN"))
 
 	r := gin.Default()
 
