@@ -6,4 +6,6 @@ import (
 )
 
 type Team = models.Team
+type Player = models.Player
 type CreateTeam = dtos.CreateDTO
+type UpdateTeam = dtos.UpdateDTO

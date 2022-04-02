@@ -1,8 +1,9 @@
 package services
 
 import (
-	"goteams/internal/repository"
 	"strings"
+
+	"goteams/internal/repository"
 )
 
 func Create(dto *CreateTeam) (*Team, error) {

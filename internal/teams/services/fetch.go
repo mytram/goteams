@@ -4,32 +4,30 @@ import (
 	"goteams/internal/repository"
 )
 
-func Fetch() ([]Team, error) {
+func Fetch() (teams []Team, err error) {
 	repo, err := repository.New()
 	if err != nil {
-		return nil, err
+		return
 	}
 
-	var teams []Team
-
-	if err := repo.Preload("Players").Find(&teams).Error; err != nil {
-		return nil, err
+	result := repo.Preload("Players").Find(&teams)
+	if result.Error != nil {
+		return nil, result.Error
 	}
 
-	return teams, nil
+	return
 }
 
-func FetchById(id string) (*Team, error) {
+func FetchById(id string) (team *Team, err error) {
 	repo, err := repository.New()
 	if err != nil {
-		return nil, err
+		return
 	}
 
-	var team Team
-
-	if err := repo.Preload("Players").First(&team, "id = ?", id).Error; err != nil {
-		return nil, err
+	result := repo.Preload("Players").First(&team, "id = ?", id)
+	if result.Error != nil {
+		return nil, result.Error
 	}
 
-	return &team, nil
+	return
 }
