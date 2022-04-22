@@ -46,3 +46,18 @@ INSERT INTO teams(name, created_at, updated_at)
 VALUES($1, NOW(), NOW())
 RETURNING id, name, created_at, updated_at, NULL
 `
+
+const sqlInsertTeamPlayer = `
+INSERT INTO team_players(team_id, player_id)
+VALUES($1, $2) ON CONFLICT DO NOTHING
+`
+
+const sqlDeleteTeamPlayers = `
+DELETE FROM team_players WHERE team_id = $1
+`
+
+const sqlUpdateTeamPlayer = `
+UPDATE teams
+SET name = $2, updated_at = NOW()
+WHERE id = $1
+`
