@@ -3,23 +3,12 @@ package services
 import (
 	"strings"
 
-	"goteams/internal/repository"
+	repo "goteams/internal/repository/players"
 )
 
 func Create(dto *CreatePlayer) (*Player, error) {
-	repo, err := repository.New()
-	if err != nil {
-		return nil, err
-	}
-
 	player := createToPlayer(dto)
-	// TODO: Add validation
-
-	if err := repo.DB.Create(player).Error; err != nil {
-		return nil, err
-	}
-
-	return player, nil
+	return repo.Create(player)
 }
 
 func createToPlayer(dto *CreatePlayer) *Player {

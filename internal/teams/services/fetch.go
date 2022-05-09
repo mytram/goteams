@@ -1,33 +1,13 @@
 package services
 
 import (
-	"goteams/internal/repository"
+	repo "goteams/internal/repository/teams"
 )
 
 func Fetch() (teams []Team, err error) {
-	repo, err := repository.New()
-	if err != nil {
-		return
-	}
-
-	result := repo.Preload("Players").Find(&teams)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-
-	return
+	return repo.Find()
 }
 
 func FetchById(id string) (team *Team, err error) {
-	repo, err := repository.New()
-	if err != nil {
-		return
-	}
-
-	result := repo.Preload("Players").First(&team, "id = ?", id)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-
-	return
+	return repo.FindByID(id)
 }
